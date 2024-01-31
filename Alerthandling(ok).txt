@@ -1,0 +1,28 @@
+package com.test1;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandlingAlert {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+WebDriver driver= new ChromeDriver();
+driver.manage().window().maximize();
+driver.get("https://demo.automationtesting.in/Alerts.html");
+Thread.sleep(10000);
+JavascriptExecutor js=(JavascriptExecutor) driver;
+WebElement element=driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+js.executeScript("arguments[0].scrollIntoView();",element);
+Thread.sleep(5000);
+driver.findElement(By.xpath("//button[@class='btn btn-danger']")).click();
+		Alert alert=driver.switchTo().alert();
+String m=alert.getText();
+Thread.sleep(10000);
+alert.accept();
+}
+}
